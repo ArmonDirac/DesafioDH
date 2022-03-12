@@ -1,5 +1,5 @@
 var router = express.Router();
-let cancionesController = require ('../controllers/cancionesController');
+var cancionesController = require ('../controllers/cancionesController');
 
 router.get('/canciones', cancionesController.listarCanciones);
 router.post('/canciones', cancionesController.crearCanciones);
