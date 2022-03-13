@@ -1,5 +1,4 @@
 var express = require('express');
-let cancionesController = require('../controllers/cancionesController.js');
 
 var router = express.Router();
 
