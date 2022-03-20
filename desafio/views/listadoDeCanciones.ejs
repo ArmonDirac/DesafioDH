@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1> Listado de Canciones </h1>
+    <ul>
+      <% for (let i = 0 ; i < canciones.length; i++) {%> 
+        <li>
+          <a href="/canciones/<%=canciones[i].titulo%>"></a><% canciones[i].titulo %> 
+        </li>
+    </ul>
+  </body>
+</html>

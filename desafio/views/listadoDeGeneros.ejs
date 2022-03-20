@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1> Listado de Generos </h1>
+    <ul>
+      <% for (let i = 0 ; i < generos.length; i++) {%> 
+        <li>
+          <% generos[i].nombre %> 
+        </li>
+    </ul>
+  </body>
+</html>
