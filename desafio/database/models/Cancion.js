@@ -1,10 +1,11 @@
-module.exports = (sequelize, dataTypes) => {
-    let alias = "Canciones";
+module.exports = function (sequelize, dataTypes) {
+    let alias = "Cancion";
+
     let cols = {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoincrement: true
+            autoIncrement: true
         },
         titulo: {
             type: dataTypes.STRING
@@ -33,6 +34,20 @@ module.exports = (sequelize, dataTypes) => {
         tableName: "canciones",
         timestamps: false
     };
-    const Cancion = sequelize.define(alias, cols, config);    
-return Cancion;
+    
+    let Cancion = sequelize.define(alias, cols, config);
+
+    Cancion.associate = function(models) {
+        Cancion.belongsTo(models.Genero, {
+            as: "generos",
+            foreignKey: "genero_id",
+        });
+        Cancion.belongsTo(models.Artista, {
+        as: "artista",
+        foreignKey: "artista_id",
+
+        });
+}
+    return Cancion;
+
 }

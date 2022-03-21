@@ -1,0 +1,24 @@
+<%- include('header') -%>
+  <h1><%=cancion.title%></h1>
+  <ul>
+      <li>
+        Duración: <%=cancion.duracion%>
+      </li>
+      <li>
+        Creada: <%=cancion.created_at%>
+      </li>
+      <li>
+        Actualizada: <%=cancion.updated_at%>
+      </li>
+      <li>
+        Género: <%=cancion.genero.name%>
+      </li>
+
+  </ul>
+  <a href="/canciones/editar/<%=cancion.id%>">
+    <button>Editar</button>
+  </a>
+  <form action="/canciones/borrar/<%=pelicula.id%>" method="POST">
+    <button>Eliminar</button>
+  </form>
+<%- include('footer') -%>

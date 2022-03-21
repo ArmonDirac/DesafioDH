@@ -1,19 +1,30 @@
 var express = require ('express');
 var router = express.Router();
-var cancionesController = require ("../controllers/cancionesController.js");
+var cancionesController = require ("../controllers/cancionesController");
 
-router.get('/', cancionesController.list);
+//Creacion de canciones de Gerar
 
-router.get('/:id', cancionesController.detail);
+router.get("/crear", cancionesController.crear);
 
-router.get('/add', cancionesController.add);
+router.post("/crear", cancionesController.guardar);
 
-router.post('/add', cancionesController.create);
+//Lectura de canciones de Gerar
 
-router.get('/edit/:id', cancionesController.edit);
+router.get("/",cancionesController.listar);
 
-router.post('/edit/:id', cancionesController.edit);
+//Detalle de canciones de Gerar
 
-router.put('/update/:id', cancionesController.update);
+router.get("/:id",cancionesController.detalle);
+
+//Actualizacion
+
+router.get("/editar/:id", cancionesController.editar);
+
+router.put("/editar/:id", cancionesController.actualizar);
+
+//Borrado
+
+router.delete("borrar/:id", cancionesController.borrar);
+
 
 module.exports = router;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= Eliminar Cancion %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1> Eliminar Canciones </h1>
+    <form action="/canciones/delete/<%canciones.id%>" method="POST">
+    <div>
+        <label for="Titulo"> Titulo: </label>
+        <input type="text" name="titulo" value="<%=canciones.titulo%>">
+    </div>
+    <div>
+        <label for="Duracion"> Duración: </label>
+        <input type="number" name="Duracion" value="<%=canciones.duracion%>">
+    </div>
+    <div>
+        <label for="Genero"> Genero: </label>
+        <input type="text" name="genero" value="<%=canciones.genero%>">
+    </div>
+    <div>
+        <label for="Album"> Albummm: </label>
+        <input type="text" name="album" value="<%=canciones.album%>">
+    </div>
+    <div>
+        <label for="Artista"> Artista: </label>
+        <input type="text" name="Artista" value="<%=canciones.artista%>">
+    </div>
+    <input type="submit" value="Delete">
+</form>
+  </body>
+</html>

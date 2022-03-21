@@ -1,46 +1,72 @@
 let db = require ("../database/models");
-let Canciones = require ("../database/models/Cancion.js");
+
 
 let cancionesController = {
-    list:   function(req, res, next) {
-        db.Canciones.findAll().then (function(canciones){res.render("listadoDeCanciones",{canciones:canciones}) })
-    },
-    detail:   function(req, res, next) {
-        db.Canciones.findByPk(req.params.id).then (function(canciones){res.render("detalleDeCanciones",{canciones:canciones}) })
-    },
-    add:   function(req, res, next) {
-        res.render("crearCanciones");
-    },
-    create:   function(req, res, next) {
-        db.Canciones.create(
-            {
-            titulo:req.body.titulo,
-            duracion:req.body.duracion,
-            genero:req.body.genero,
-            album:req.body.album,
-            artista:req.body.artista
-            }
-            );
-    res.redirect("/canciones")},
 
-    edit:   function(req, res, next) {
-        db.Canciones.findByPk(req.params.id).then (function(canciones){res.render("editarCancion",{canciones:canciones}) })
-    },
-    update:   function(req, res, next) {
-        db.Canciones.update(
-            {
-            titulo:req.body.titulo,
-            duracion:req.body.duracion,
-            genero:req.body.genero,
-            album:req.body.album,
-            artista:req.body.artista
-            },{
-                where: {
-                    id: req.params.id
-                }
+    crear: function (req,res) {
+        db.Genero.findAll()
+            .then(function(generos) {
+                return res.render("creacionCanciones", {generos:generos})
             })
-            res.redirect("/canciones/update/" + req.params.id)
-    }}
+    },
+    guardar: function (req,res) {
+        db.Cancion.create({
+            titulo: req.body.titulo,
+            duracion:req.body.duracion,
+            created_at:req.body.created_at,
+            updated_at:req.body.updated_at,
+            genero_id:req.body.genero,
+        });
+        res.redirect("/canciones");
 
+    },
+    listar: function(req,res) {
+        db.Cancion.findAll()
+        .then(function(canciones){
+            res.render("listadoCanciones", {peliculas:peliculas})
 
+        })
+    },
+    detalle: function (req,res) {
+        db.Cancion.findByPk(req.params.id, { include: [{association:"genero"}, {association:"Artista"}]})
+            .then(function(cancion) {
+                res.render("detalleCancion", {cancion:cancion})
+            })
+    },
+    editar: function (req,res){
+        let pedidoCancion = db.Cancion.findByPk(rep.params.id);
+
+        let pedidoGeneros = db.Genero.findAll();
+
+        Promise.all([pedidoCancion, pedidoGeneros])
+            .then(function([pelicula,generos]){
+                res.render("editarCancion", {cancion:cancion, generos:generos})
+
+            })
+
+    } ,
+    actualizar: function (req,res){
+        db.Cancion.update({
+            titulo: req.body.titulo,
+            duracion:req.body.duracion,
+            created_at:req.body.created_at,
+            updated_at:req.body.updated_at,
+            genero_id:req.body.genero,
+        },{
+            where: {
+                id: req.params.id
+            }
+        } );
+        res.redirect("/canciones/"+ req.params.id);
+
+    },
+    borrar: function (req,res) {
+        db.Cancion.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.redirect("/canciones");
+    }
+}
 module.exports = cancionesController;
