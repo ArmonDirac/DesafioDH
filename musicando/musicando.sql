@@ -18,6 +18,8 @@
 --
 -- Table structure for table `albumes`
 --
+CREATE SCHEMA IF NOT EXISTS `musicando` DEFAULT CHARACTER SET utf8 ;
+USE `musicando` ;
 
 DROP TABLE IF EXISTS `albumes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

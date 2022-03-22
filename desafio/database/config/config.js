@@ -2,9 +2,9 @@ module.exports = {
   "development": {
     "username": "root",
     "password": "ArmonDirac2662!!",
-    "database": "musicando.sql",
-    "host": "127.0.0.1:3306",
-    "dialect": "mysql"
+    "database": "musicando",
+    "host": "3306",
+    "dialect": "mysql"  
   },
   "test": {
     "username": "root",
